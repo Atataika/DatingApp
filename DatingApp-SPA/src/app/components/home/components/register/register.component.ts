@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class RegisterComponent {
   @Output() onCancelRegister = new EventEmitter<void>();
 
-  public model: UserRequest;
+  public model: UserRequest = { username: null, password: null };
 
   constructor(private authService: AuthService) {}
 
