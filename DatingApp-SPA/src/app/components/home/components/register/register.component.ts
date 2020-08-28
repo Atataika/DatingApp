@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { UserRequest } from 'src/app/shared/models/user-request.model';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -12,12 +13,15 @@ export class RegisterComponent {
 
   public model: UserRequest = { username: null, password: null };
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private alertify: AlertifyService
+  ) {}
 
   public register() {
     this.authService.register(this.model).subscribe(
-      () => console.log('registration successful'),
-      (error) => console.log(error)
+      () => this.alertify.success('Registration successful.'),
+      (error) => this.alertify.error(error)
     );
   }
 
