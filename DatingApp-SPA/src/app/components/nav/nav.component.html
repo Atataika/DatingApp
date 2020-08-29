@@ -24,7 +24,7 @@
   <div *ngIf="isLoggedIn; else loginFormTemplate"
     class="dropdown">
     <a class="dropdown-toggle text-light">
-      Welcome User
+      Welcome {{ username | titlecase }}
     </a>
 
     <div class="dropdown-menu">

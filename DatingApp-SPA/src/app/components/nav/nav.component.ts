@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserRequest } from 'src/app/shared/models/user-request.model';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthService } from '../../shared/services/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../../shared/services/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
   model: UserRequest = { username: null, password: null };
 
   constructor(
@@ -16,12 +16,12 @@ export class NavComponent implements OnInit {
     private alertify: AlertifyService
   ) {}
 
-  ngOnInit(): void {}
+  public get isLoggedIn(): boolean {
+    return this.authService.checkIsUserLoggedIn();
+  }
 
-  get isLoggedIn(): boolean {
-    const token = localStorage.getItem('token');
-
-    return !!token;
+  public get username(): string {
+    return this.authService.decodedToken?.unique_name;
   }
 
   public login(): void {
