@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text;
+using AutoMapper;
 using Data;
 using DatingApp.API.Data;
 using DatingApp.API.Helpers;
@@ -29,13 +30,15 @@ namespace DatingApp.API
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultSQLiteConnection")));
-
-      services.AddControllers();
-
+      services.AddControllers().AddNewtonsoftJson(opt =>
+      {
+        opt.SerializerSettings.ReferenceLoopHandling =
+        Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+      });
       services.AddCors();
-
       services.AddScoped<IAuthRepository, AuthRepository>();
-
+      services.AddScoped<IDatingRepository, DatingRepository>();
+      services.AddAutoMapper(typeof(DatingRepository).Assembly);
       services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
       {
         options.TokenValidationParameters = new TokenValidationParameters
@@ -74,17 +77,11 @@ namespace DatingApp.API
           });
         });
       }
-
       //   app.UseHttpsRedirection();
-
       app.UseRouting();
-
       app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
       app.UseAuthentication();
-
       app.UseAuthorization();
-
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers();
