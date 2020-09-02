@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/home/components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListsComponent } from './components/lists/lists.component';
+import { MemberCardComponent } from './components/member-list/components/member-card/member-card.component';
 import { MemberListComponent } from './components/member-list/member-list.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -24,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
     MemberListComponent,
     ListsComponent,
     MessagesComponent,
+    MemberCardComponent,
   ],
   imports: [
     BrowserModule,

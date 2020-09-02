@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../models/login-response.model';
 import { UserRequest } from '../models/user-request.model';
 
@@ -10,7 +11,7 @@ import { UserRequest } from '../models/user-request.model';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:5000/api/auth/';
+  private baseUrl = environment.baseUrl + 'auth/';
   private jwtHelper = new JwtHelperService();
   public decodedToken: any;
 
