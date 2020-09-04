@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/home/components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListsComponent } from './components/lists/lists.component';
+import { MemberEditComponent } from './components/member-edit/member-edit.component';
 import { MemberCardComponent } from './components/member-list/components/member-card/member-card.component';
 import { MemberDetailComponent } from './components/member-list/components/member-detail/member-detail.component';
 import { MemberListComponent } from './components/member-list/member-list.component';
@@ -19,6 +20,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ErrorInterceptorProvider } from './services/error.interceptor';
 import { MemberDetailResolver } from './shared/resolvers/member-detail.resolver';
+import { MemberEditResolver } from './shared/resolvers/member-edit.resolver';
 import { MemberListResolver } from './shared/resolvers/member-list.resolver';
 import { SharedModule } from './shared/shared.module';
 
@@ -33,6 +35,7 @@ import { SharedModule } from './shared/shared.module';
     MessagesComponent,
     MemberCardComponent,
     MemberDetailComponent,
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { SharedModule } from './shared/shared.module';
     ErrorInterceptorProvider,
     MemberDetailResolver,
     MemberListResolver,
+    MemberEditResolver,
   ],
   bootstrap: [AppComponent],
 })
