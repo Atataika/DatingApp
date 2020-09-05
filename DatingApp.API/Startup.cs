@@ -30,26 +30,27 @@ namespace DatingApp.API
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultSQLiteConnection")));
-      services.AddControllers().AddNewtonsoftJson(opt =>
-      {
-        opt.SerializerSettings.ReferenceLoopHandling =
-        Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-      });
       services.AddCors();
       services.AddScoped<IAuthRepository, AuthRepository>();
       services.AddScoped<IDatingRepository, DatingRepository>();
       services.AddAutoMapper(typeof(DatingRepository).Assembly);
-      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-      {
-        options.TokenValidationParameters = new TokenValidationParameters
+      services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+      services.AddControllers().AddNewtonsoftJson(opt =>
         {
-          ValidateIssuerSigningKey = true,
-          IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
-            .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
-          ValidateIssuer = false,
-          ValidateAudience = false,
-        };
-      });
+          opt.SerializerSettings.ReferenceLoopHandling =
+          Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        });
+      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+        {
+          options.TokenValidationParameters = new TokenValidationParameters
+          {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
+              .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+          };
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

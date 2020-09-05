@@ -25,6 +25,10 @@
     <div *ngIf="isLoggedIn; else loginFormTemplate"
       dropdown
       class="dropdown">
+      <span class="mr-1">
+        <img src="{{ photoUrl$ | async }}"
+          alt="Huy">
+      </span>
       <a (click)="false"
         dropdownToggle
         class="dropdown-toggle text-light">
