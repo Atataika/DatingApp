@@ -33,6 +33,7 @@ namespace DatingApp.API
       services.AddCors();
       services.AddScoped<IAuthRepository, AuthRepository>();
       services.AddScoped<IDatingRepository, DatingRepository>();
+      services.AddScoped<LogUserActivity>();
       services.AddAutoMapper(typeof(DatingRepository).Assembly);
       services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
       services.AddControllers().AddNewtonsoftJson(opt =>

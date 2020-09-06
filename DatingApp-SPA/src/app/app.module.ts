@@ -9,6 +9,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TimeagoModule } from 'ngx-timeago';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/home/components/register/register.component';
@@ -51,6 +52,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     NgxGalleryModule,
     FileUploadModule,
+    TimeagoModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
