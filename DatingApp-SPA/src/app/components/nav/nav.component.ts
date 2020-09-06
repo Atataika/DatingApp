@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserRequest } from 'src/app/shared/models/user-request.model';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthService } from '../../shared/services/auth.service';
 
@@ -11,7 +10,7 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  model: UserRequest = { username: null, password: null };
+  model: any = { username: null, password: null };
   public photoUrl$: Observable<string>;
 
   constructor(

@@ -26,8 +26,8 @@
       dropdown
       class="dropdown">
       <span class="mr-1">
-        <img src="{{ photoUrl$ | async }}"
-          alt="Huy">
+        <img src="{{ (photoUrl$ | async) || '../../assets/user.png' }}"
+          alt="No avatar">
       </span>
       <a (click)="false"
         dropdownToggle

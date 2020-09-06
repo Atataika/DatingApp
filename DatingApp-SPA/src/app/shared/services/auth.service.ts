@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../models/login-response.model';
 import { User } from '../models/user';
-import { UserRequest } from '../models/user-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +25,8 @@ export class AuthService {
     this.currentPhotoUrl.next(photoUrl);
   }
 
-  public login(model: UserRequest): Observable<void> {
-    return this.http.post<LoginResponse>(this.baseUrl + 'login', model).pipe(
+  public login(user: any): Observable<void> {
+    return this.http.post<LoginResponse>(this.baseUrl + 'login', user).pipe(
       map((res: LoginResponse) => {
         if (res) {
           localStorage.setItem('token', res.token);
@@ -40,8 +39,8 @@ export class AuthService {
     );
   }
 
-  public register(model: UserRequest): Observable<void> {
-    return this.http.post<void>(this.baseUrl + 'register', model);
+  public register(user: User): Observable<void> {
+    return this.http.post<void>(this.baseUrl + 'register', user);
   }
 
   public checkIsUserLoggedIn() {

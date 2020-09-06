@@ -35,31 +35,6 @@ export class PhotoEditorComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  public initializeUploader(): FileUploader {
-    const uploader = new FileUploader({
-      url: `${this.baseUrl}users/${this.authSertive.decodedToken.nameid}/photos`,
-      authToken: `Bearer ${localStorage.getItem('token')}`,
-      isHTML5: true,
-      allowedFileType: ['image'],
-      autoUpload: false,
-      maxFileSize: 10 * 1024 * 1024,
-    });
-
-    uploader.onAfterAddingFile = (file) => {
-      file.withCredentials = false;
-    };
-
-    uploader.onSuccessItem = (item, response) => {
-      if (response) {
-        const photo: Photo = JSON.parse(response);
-
-        this.photos.push(photo);
-      }
-    };
-
-    return uploader;
-  }
-
   public setMainPhoto(photo: Photo): void {
     this.userService
       .setMainPhoto(this.authSertive.decodedToken.nameid, photo.id)
@@ -96,5 +71,39 @@ export class PhotoEditorComponent implements OnInit {
           (error) => this.alertify.error(`Failed to delete hte photo ${error}`)
         );
     });
+  }
+
+  private initializeUploader(): FileUploader {
+    const uploader = new FileUploader({
+      url: `${this.baseUrl}users/${this.authSertive.decodedToken.nameid}/photos`,
+      authToken: `Bearer ${localStorage.getItem('token')}`,
+      isHTML5: true,
+      allowedFileType: ['image'],
+      autoUpload: false,
+      maxFileSize: 10 * 1024 * 1024,
+    });
+
+    uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+
+    uploader.onSuccessItem = (item, response) => {
+      if (response) {
+        const photo: Photo = JSON.parse(response);
+
+        this.photos.push(photo);
+
+        if (photo.isMain) {
+          this.authSertive.changeMemberPhoto(photo.url);
+          this.authSertive.currentUser.photoUrl = photo.url;
+          localStorage.setItem(
+            'user',
+            JSON.stringify(this.authSertive.currentUser)
+          );
+        }
+      }
+    };
+
+    return uploader;
   }
 }

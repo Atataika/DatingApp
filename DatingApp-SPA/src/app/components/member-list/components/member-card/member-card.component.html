@@ -1,7 +1,7 @@
 <div class="card mb-4">
   <div class="card-img-wrapper">
     <img class="card-img-top"
-      src="{{ user.photoUrl }}"
+      src="{{ user.photoUrl || '../../../assets/user.png' }}"
       alt="{{ user.knownAs }}">
     <ul class="list-inline member-icons text-center">
       <li class="list-inline-item">
