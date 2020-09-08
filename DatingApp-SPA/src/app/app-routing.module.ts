@@ -8,6 +8,7 @@ import { MemberListComponent } from './components/member-list/member-list.compon
 import { MessagesComponent } from './components/messages/messages.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './guards/prevent-unsaved-changes.guard';
+import { ListsResolver } from './shared/resolvers/lists.resolver';
 import { MemberDetailResolver } from './shared/resolvers/member-detail.resolver';
 import { MemberEditResolver } from './shared/resolvers/member-edit.resolver';
 import { MemberListResolver } from './shared/resolvers/member-list.resolver';
@@ -36,7 +37,11 @@ const routes: Routes = [
         canDeactivate: [PreventUnsavedChangesGuard],
       },
       { path: 'messages', component: MessagesComponent },
-      { path: 'lists', component: ListsComponent },
+      {
+        path: 'lists',
+        component: ListsComponent,
+        resolve: { users: ListsResolver },
+      },
     ],
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },

@@ -25,6 +25,7 @@ import { MemberListComponent } from './components/member-list/member-list.compon
 import { MessagesComponent } from './components/messages/messages.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ErrorInterceptorProvider } from './services/error.interceptor';
+import { ListsResolver } from './shared/resolvers/lists.resolver';
 import { MemberDetailResolver } from './shared/resolvers/member-detail.resolver';
 import { MemberEditResolver } from './shared/resolvers/member-edit.resolver';
 import { MemberListResolver } from './shared/resolvers/member-list.resolver';
@@ -73,6 +74,7 @@ import { SharedModule } from './shared/shared.module';
     MemberDetailResolver,
     MemberListResolver,
     MemberEditResolver,
+    ListsResolver,
   ],
   bootstrap: [AppComponent],
 })
