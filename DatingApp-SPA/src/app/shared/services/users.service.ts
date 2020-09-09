@@ -148,4 +148,18 @@ export class UsersService {
       message
     );
   }
+
+  public deleteMessage(id: number, userId: number): Observable<void> {
+    return this.http.post<void>(
+      this.baseUrl + `users/${userId}/messages/${id}`,
+      {}
+    );
+  }
+
+  public markAsRead(userId: number, messageId: number): Observable<void> {
+    return this.http.post<void>(
+      this.baseUrl + `users/${userId}/messages/${messageId}/read`,
+      {}
+    );
+  }
 }
