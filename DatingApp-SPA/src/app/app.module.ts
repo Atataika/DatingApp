@@ -20,6 +20,7 @@ import { ListsComponent } from './components/lists/lists.component';
 import { PhotoEditorComponent } from './components/member-edit/components/photo-editor/photo-editor.component';
 import { MemberEditComponent } from './components/member-edit/member-edit.component';
 import { MemberCardComponent } from './components/member-list/components/member-card/member-card.component';
+import { MemberMessagesComponent } from './components/member-list/components/member-detail/components/member-messages/member-messages.component';
 import { MemberDetailComponent } from './components/member-list/components/member-detail/member-detail.component';
 import { MemberListComponent } from './components/member-list/member-list.component';
 import { MessagesComponent } from './components/messages/messages.component';
@@ -29,6 +30,7 @@ import { ListsResolver } from './shared/resolvers/lists.resolver';
 import { MemberDetailResolver } from './shared/resolvers/member-detail.resolver';
 import { MemberEditResolver } from './shared/resolvers/member-edit.resolver';
 import { MemberListResolver } from './shared/resolvers/member-list.resolver';
+import { MessagesResolver } from './shared/resolvers/messages.resolver';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -44,6 +46,7 @@ import { SharedModule } from './shared/shared.module';
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    MemberMessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ import { SharedModule } from './shared/shared.module';
     MemberListResolver,
     MemberEditResolver,
     ListsResolver,
+    MessagesResolver,
   ],
   bootstrap: [AppComponent],
 })
